@@ -1,0 +1,12 @@
+﻿@model Trello.Models.TaskItem
+
+<div class="task-item">
+    @Model.Task
+    <div class="task-status">
+        <div class="task-status-item"><img src="~/img/justify_26.png" alt="justify_26"></div>
+        <div class="task-status-item"><img src="~/img/checkbox_26.png" alt="checkbox_26">0/@Model.Check</div>
+        <div class="task-status-item"><img src="~/img/attach_26.png" alt="attach_26">@Model.Fixed</div>
+        <div class="task-status-item"><img src="~/img/comments_26.png" alt="comments_26">@Model.Comment</div>
+        <div class="task-status-item-dev"><img src="~/@Model.AvatarURL" alt="avatar_1"></div>
+    </div>
+</div>
