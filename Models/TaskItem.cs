@@ -2,7 +2,7 @@
 {
     public class TaskItem
     {
-        public String? Task { get; set; }
+        public String? Exercise { get; set; }
         public Int32 Check { get; set; }
         public Int32 Fixed { get; set; }
         public Int32 Comment { get; set; }
