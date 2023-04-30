@@ -1,0 +1,29 @@
+﻿.task-item {
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    font-size: 1rem;
+}
+
+.task-status {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.task-status-item {
+    margin: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.task-status-item img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 5px;
+}
+
+.task-status-item-dev {
+    margin-left: auto;
+}

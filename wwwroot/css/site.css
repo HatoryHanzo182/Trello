@@ -24,7 +24,7 @@ body {
     align-items: stretch;
 }
 
-.tack {
+.task {
     margin: 1rem;
     max-width: 400px;
     max-height: 750px;
@@ -36,7 +36,7 @@ body {
     animation: slide-up 0.5s ease-in-out;
 }
 
-.tack:hover {
+.task:hover {
     transform: scale(1.05);
 }
 
@@ -74,57 +74,27 @@ body {
     background-color: #444654;
 }
 
-.task-item {
-    margin: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: rgb(245, 245, 245);
-    font-size: 1rem;
-}
-
-.task-status {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.task-status-item {
-    margin: 14px;
-    display: flex;
-    align-items: center;
-}
-
-.task-status-item img {
-    max-width: 100%;
-    height: auto;
-    margin-right: 5px;
-}
-
-.task-status-item-dev {
-    margin-left: auto;
-}
-
-.tack::-webkit-scrollbar {
+.task::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
 
-.tack::-webkit-scrollbar-track {
+.task::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
 
-.tack::-webkit-scrollbar-thumb {
+.task::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
 }
 
-.tack::-webkit-scrollbar-thumb:hover {
+.task::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
 @media screen and (max-width: 1200px) {
-    .tack {
+    .task {
         width: calc(50% - 2rem);
         margin-bottom: 1rem;
     }
@@ -136,7 +106,7 @@ body {
         align-items: center;
     }
 
-    .tack {
+    .task {
         width: 100%;
         margin-bottom: 1rem;
     }
@@ -164,7 +134,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .tack {
+    .task {
         width: 100%;
         margin: 0.5rem 0;
     }

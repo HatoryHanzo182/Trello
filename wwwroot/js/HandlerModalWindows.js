@@ -1,16 +1,21 @@
-﻿function ShowMoadalAddItem() {
-    var modal = document.getElementById("myModal");
-    if (modal) {
-        console.log("ShowMoadalAddItem true")
-        modal.style.display = "block";
-        var modal_body = modal.querySelector(".modal-body");
-        fetch("../Views/ModalWindows/ModalAddTaskItem.cshtml")
-            .then(response => response.text())
-            .then(data => modal_body.innerHTML = data);
+﻿var open_modal = document.getElementById("add_task_item");
+var close_window = document.getElementById("cancel_window");
+
+if (open_modal) { open_modal.onclick = ShowMoadalAddItem; }
+if (close_window) { close_window.onclick = CloseWindow; }
+
+function ShowMoadalAddItem() {
+    var add_modal = document.getElementById("MoadlTaskItem");
+
+    if (add_modal) {
+        add_modal.style.display = "block";
     }
 }
+function CloseWindow() {
+    var close_modal = document.getElementById("MoadlTaskItem");
+    console.log("CLOSE");
 
-var button = document.getElementById("add_task_item");
-if (button) {
-    button.onclick = ShowMoadalAddItem;
+    if (close_modal) {
+        close_modal.style.display = "none";
+    }
 }

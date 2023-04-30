@@ -1,0 +1,149 @@
+﻿.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal .new-task {
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
+    min-height: 200px;
+    padding: 1rem;
+}
+
+.modal .cancel-button, .modal .add-button {
+    margin-top: 30px;
+}
+
+.modal .cancel-button:hover {
+    background-color: #555;
+}
+
+.modal .add-button:hover {
+    background-color: #0096c7;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal.show .new-task {
+    animation: modal-open 0.3s ease-out;
+}
+
+@keyframes modal-open {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.new-task {
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
+    min-height: 200px;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    line-height: 1.2;
+    transition: border-color 0.2s ease-in-out;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.new-task-status {
+    margin:10px;
+    margin-left:30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.new-task-status img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 5px;
+}
+
+input{
+    font-size:15px;
+    width:50px;
+}
+
+.task-avatar {
+    display: flex;
+    flex-direction: row;
+}
+
+.new-task-status-dev {
+    margin-left: 40px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancel-button, .add-button {
+    margin-top: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #777;
+}
+
+.add-button {
+    background-color: #00b4d8;
+}
+
+.cancel-button:hover {
+    background-color: #555;
+}
+
+.add-button:hover {
+    background-color: #0096c7;
+}
