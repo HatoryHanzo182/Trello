@@ -8,17 +8,13 @@ namespace Trello.Controllers
     public class BoardController : Controller
     {
         private readonly ILogger<BoardController> _logger;
+        private Models.Task _task = new Models.Task();
 
         public BoardController(ILogger<BoardController> logger)
         {
             _logger = logger;
-        }
 
-        public IActionResult Board()
-        {
-            Models.Task task = new Models.Task();
-
-            task.Items.Add(new Models.TaskItem()
+            _task.Items.Add(new Models.TaskItem()
             {
                 Exercise = "sdksdjksjdkhxcuf dfhd dfhsuh hufns duhsuhc ohgm,t xhcn efjif ddfgh !ijfidj furhfuhduukxjhds",
                 Check = 9,
@@ -26,7 +22,7 @@ namespace Trello.Controllers
                 Comment = 0,
                 AvatarURL = "img/avatar_3.png"
             });
-            task.Items.Add(new Models.TaskItem()
+            _task.Items.Add(new Models.TaskItem()
             {
                 Exercise = "sdksdjksjdkhxcuf dfhd dfhsuh hufns duhsuhc ohgm,t xhcn efjif ",
                 Check = 1,
@@ -34,8 +30,25 @@ namespace Trello.Controllers
                 Comment = 0,
                 AvatarURL = "img/avatar_1.png"
             });
+        }
 
-            return View(task); 
+        public IActionResult Board()
+        {
+            return View(_task); 
+        }
+
+        [HttpPost]
+        public IActionResult AddNewTaskItem([FromBody] TaskItem item)
+        {
+            _task.Items.Add(new Models.TaskItem()
+            {
+                Exercise = item.Exercise,
+                Check = item.Check,
+                Fixed = item.Fixed,
+                Comment = item.Comment,
+                AvatarURL = "img/avatar_1.png"
+            });
+            return Ok();
         }
     }
 }

@@ -13,9 +13,9 @@
                 <img src="~/img/add_FILL0.svg" alt="Add Task item" />
             </button>
         </div>
-        
-        @foreach (TaskItem i in Model.Items) { <partial name="TaskItem" model="@i"/> }
-    
+        <div id="output-tasks">
+            @foreach (TaskItem i in Model.Items) { <partial name="TaskItem" model="@i"/> }
+        </div>
     </div>
 </div>
 
