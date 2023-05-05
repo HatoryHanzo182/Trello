@@ -4,9 +4,9 @@
         <h6>New Task</h6>
         <textarea rows="4" cols="50" placeholder="Task text..."></textarea>
         <div class="new-task-status">
-            <div class="new-task-status"><img src="~/img/checkbox_26.png" alt="checkbox_26"><input /></div>
-            <div class="new-task-status"><img src="~/img/attach_26.png" alt="attach_26"><input /></div>
-            <div class="new-task-status"><img src="~/img/comments_26.png" alt="comments_26"><input /></div>
+            <div class="new-task-status"><img src="~/img/checkbox_26.png" alt="checkbox_26"><input placeholder="0"/></div>
+            <div class="new-task-status"><img src="~/img/attach_26.png" alt="attach_26"><input placeholder="0"/></div>
+            <div class="new-task-status"><img src="~/img/comments_26.png" alt="comments_26"><input placeholder="0"/></div>
         </div>
         <div class="task-avatar">
             <div class="new-task-status-dev"><img src="~/img/avatar_1.png" alt="avatar_1"></div>
@@ -23,27 +23,27 @@
 <script src="~/js/HandlerModalWindows.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-        $(document).ready(function () {
-            $('.add-button').on('click', function () {
-                var item =
-                {
-                    Exercise: $('textarea').val(),
-                    Check: parseInt($('.new-task-status input:eq(0)').val()),
-                    Fixed: parseInt($('.new-task-status input:eq(1)').val()),
-                    Comment: parseInt($('.new-task-status input:eq(2)').val()),
-                    AvatarURL: $('.task-avatar img.selected').attr('src')
-                };
-
-                $.ajax
-                    ({
-                        url: '/Board/AddNewTaskItem',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(item),
-                        success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
-                    });
-
-                CloseWindow();
+    $(document).ready(function () {
+        $('.add-button').on('click', function () {
+            var item =
+            {
+                Exercise: $('textarea').val(),
+                Check: parseInt($('.new-task-status input:eq(0)').val()),
+                Fixed: parseInt($('.new-task-status input:eq(1)').val()),
+                Comment: parseInt($('.new-task-status input:eq(2)').val()),
+                AvatarURL: $('.task-avatar img.selected').attr('src')
+            };
+    
+            $.ajax
+            ({
+                url: '/Board/AddNewTaskItem',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(item),
+                success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
             });
+    
+            CloseWindow();
         });
+    });
 </script>

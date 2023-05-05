@@ -24,18 +24,6 @@
     padding: 1rem;
 }
 
-.modal .cancel-button, .modal .add-button {
-    margin-top: 30px;
-}
-
-.modal .cancel-button:hover {
-    background-color: #555;
-}
-
-.modal .add-button:hover {
-    background-color: #0096c7;
-}
-
 .modal.show {
     display: block;
 }
@@ -130,20 +118,4 @@ input{
     padding: 10px 20px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-}
-
-.cancel-button {
-    background-color: #777;
-}
-
-.add-button {
-    background-color: #00b4d8;
-}
-
-.cancel-button:hover {
-    background-color: #555;
-}
-
-.add-button:hover {
-    background-color: #0096c7;
 }

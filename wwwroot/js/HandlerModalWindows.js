@@ -21,29 +21,3 @@ function CloseWindow()
 
     if (close_modal) { close_modal.style.display = "none"; }
 }
-
-//$.getScript("https://code.jquery.com/jquery-3.6.0.min.js", function () {
-//    $(document).ready(function () {
-//        $('.add-button').on('click', function () {
-//            var item =
-//            {
-//                Exercise: $('textarea').val(),
-//                Check: parseInt($('.new-task-status input:eq(0)').val()),
-//                Fixed: parseInt($('.new-task-status input:eq(1)').val()),
-//                Comment: parseInt($('.new-task-status input:eq(2)').val()),
-//                AvatarURL: $('.task-avatar img.selected').attr('src')
-//            };
-//
-//            $.ajax
-//                ({
-//                    url: '/Board/AddNewTaskItem',
-//                    method: 'POST',
-//                    contentType: 'application/json',
-//                    data: JSON.stringify(item),
-//                    success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
-//                });
-//
-//            CloseWindow();
-//        });
-//    });
-//});
