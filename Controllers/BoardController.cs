@@ -25,15 +25,15 @@ namespace Trello.Controllers
 
         public IActionResult Board()
         {
-            var taskItemsFromDb = _context.TaskItems.ToList();
-            var tasksFromDb = _context.Task.ToList();
+            var task_items_DB = _context.TaskItems.ToList();
+            var task_DB = _context.Task.ToList();
 
-            foreach (var taskFromDb in tasksFromDb)
+            foreach (var i in task_DB)
             {
-                var task = new Models.Task
+                _task = new Models.Task
                 {
-                    TaskTitle = taskFromDb.TaskTitle,
-                    Items = taskItemsFromDb.Where(ti => ti.TaskId == taskFromDb.Id).Select(ti => new Models.TaskItem
+                    TaskTitle = i.TaskTitle,
+                    Items = task_items_DB.Where(ti => ti.TaskId == i.Id).Select(ti => new Models.TaskItem
                     {
                         Exercise = ti.Exercise,
                         Check = ti.Check,
@@ -44,7 +44,7 @@ namespace Trello.Controllers
                     }).ToList()
                 };
 
-                _board.Tasks.Add(task);
+                _board.Tasks.Add(_task);
             }
 
             return View(_board);
@@ -55,8 +55,12 @@ namespace Trello.Controllers
         {
             if (task is not null && !String.IsNullOrEmpty(task.TaskTitle)) 
             {
-                _context.Task.Add(new DATA.Entity.Task() { TaskTitle = task.TaskTitle,});
-                _context.SaveChanges();
+                try
+                {
+                    _context.Task.Add(new DATA.Entity.Task() { TaskTitle = task.TaskTitle, });
+                    _context.SaveChanges();
+                }
+                catch { }
             }
             return Ok();
         }
@@ -68,7 +72,6 @@ namespace Trello.Controllers
             {
                 if (!String.IsNullOrEmpty(item.Exercise) && !String.IsNullOrEmpty(item.AvatarURL))
                 {
-                    var task = _context.Task.FirstOrDefault(t => t.TaskTitle == item.TaskId);
                     _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
                     {
                         Exercise = item.Exercise,
@@ -76,7 +79,7 @@ namespace Trello.Controllers
                         Fixed = item.Fixed,
                         Comment = item.Comment,
                         AvatarURL = item.AvatarURL.Substring(1),
-                        TaskId = task.Id
+                        //TaskId
                     });
                     _context.SaveChanges();
                 }

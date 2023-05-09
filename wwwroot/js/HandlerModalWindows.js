@@ -60,9 +60,6 @@ $('.task-avatar img').click(function () {
 
     $('.add-button').data('avatarURL', avatarURL);
 });
-
-
-
 $(document).ready(function () {
     $('.add-button').on('click', function () {
         var item =
@@ -72,7 +69,7 @@ $(document).ready(function () {
             Fixed: parseInt($('.new-task-status input:eq(1)').val()),
             Comment: parseInt($('.new-task-status input:eq(2)').val()),
             AvatarURL: $(this).data('avatarURL'),
-            TaskId: $(this).data('data-tasktitle')
+            //TaskId: $(this).data('data-tasktitle')
         };
 
         $.ajax
@@ -87,9 +84,6 @@ $(document).ready(function () {
         CloseModalAddItem();
     });
 });
-
-
-
 $(document).ready(function () {
     $('body').on('click', '.add-button-task', function () {
         var task = { TaskTitle: $('#taskNameInput').val() };
