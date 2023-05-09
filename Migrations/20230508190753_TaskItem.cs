@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Trello.Migrations
 {
     /// <inheritdoc />
-    public partial class TaskItemData : Migration
+    public partial class TaskItem : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,8 @@ namespace Trello.Migrations
                     Check = table.Column<int>(type: "int", nullable: false),
                     Fixed = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<int>(type: "int", nullable: false),
-                    AvatarURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AvatarURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TaskId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {

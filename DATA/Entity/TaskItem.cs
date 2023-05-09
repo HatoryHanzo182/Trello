@@ -8,5 +8,6 @@
         public Int32 Fixed { get; set; }
         public Int32 Comment { get; set; }
         public String? AvatarURL { get; set; }
+        public Guid TaskId { get; set; }
     }
 }

@@ -101,15 +101,27 @@ input{
     margin-left: 40px;
 }
 
+.rounded-image {
+    border-radius: 50%;
+    border: 3px solid #50eaa5;
+}
+
 .buttons-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.add-button {
+    background-color: #10a37f;
+}
+
+.cancel-button {
+    background-color: #fff;
+}
+
 .cancel-button, .add-button {
     margin-top: 30px;
-    color: #fff;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;

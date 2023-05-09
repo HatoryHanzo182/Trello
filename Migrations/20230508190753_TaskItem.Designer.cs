@@ -12,8 +12,8 @@ using Trello.DATA;
 namespace Trello.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230505130756_TaskItemData")]
-    partial class TaskItemData
+    [Migration("20230508190753_TaskItem")]
+    partial class TaskItem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,9 @@ namespace Trello.Migrations
 
                     b.Property<int>("Fixed")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

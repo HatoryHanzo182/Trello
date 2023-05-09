@@ -1,0 +1,68 @@
+﻿.task {
+    margin: 1rem;
+    max-width: 400px;
+    max-height: 750px;
+    overflow: auto;
+    border-radius: 10px;
+    background-color: rgb(220, 220, 220);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    animation: slide-up 0.5s ease-in-out;
+}
+
+.task:hover {
+    transform: scale(1.05);
+}
+
+.task-title {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 1rem;
+    font-weight: 700;
+}
+
+.add-task-item-btn {
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-size: 10px;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-task-item-btn img {
+    height: 20px;
+    width: 20px;
+}
+
+.add-task-item-btn:hover {
+    background-color: #444654;
+}
+
+.task::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.task::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.task::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.task::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

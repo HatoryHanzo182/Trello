@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Xml.Linq;
 using Trello.DATA;
 using Trello.Models;
@@ -10,32 +12,53 @@ namespace Trello.Controllers
     {
         private readonly ILogger<BoardController> _logger;
         private readonly DataContext _context;
+        private Models.Board _board;
         private Models.Task _task;
 
-        public BoardController(ILogger<BoardController> logger, DataContext context)
+        public BoardController(ILogger<BoardController> logger, DataContext context, Models.Task task)
         {
             _logger = logger;
             _context = context;
-            _task = new Models.Task();
+            _board = new Models.Board();
+            _task = task;
         }
 
         public IActionResult Board()
         {
-            var task_item = _context.TaskItems.ToList();
+            var taskItemsFromDb = _context.TaskItems.ToList();
+            var tasksFromDb = _context.Task.ToList();
 
-            _task = new Models.Task()
+            foreach (var taskFromDb in tasksFromDb)
             {
-                Items = task_item.Select(ti => new Models.TaskItem()
+                var task = new Models.Task
                 {
-                    Exercise = ti.Exercise,
-                    Check = ti.Check,
-                    Fixed = ti.Fixed,
-                    Comment = ti.Comment,
-                    AvatarURL = ti.AvatarURL
-                }).ToList()
-            };
+                    TaskTitle = taskFromDb.TaskTitle,
+                    Items = taskItemsFromDb.Where(ti => ti.TaskId == taskFromDb.Id).Select(ti => new Models.TaskItem
+                    {
+                        Exercise = ti.Exercise,
+                        Check = ti.Check,
+                        Fixed = ti.Fixed,
+                        Comment = ti.Comment,
+                        AvatarURL = ti.AvatarURL,
+                        TaskId = ti.TaskId.ToString(),
+                    }).ToList()
+                };
 
-            return View(_task); 
+                _board.Tasks.Add(task);
+            }
+
+            return View(_board);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewTask([FromBody] Models.Task task)
+        {
+            if (task is not null && !String.IsNullOrEmpty(task.TaskTitle)) 
+            {
+                _context.Task.Add(new DATA.Entity.Task() { TaskTitle = task.TaskTitle,});
+                _context.SaveChanges();
+            }
+            return Ok();
         }
 
         [HttpPost]
@@ -43,15 +66,17 @@ namespace Trello.Controllers
         {
             if (item is not null)
             {
-                if (!String.IsNullOrEmpty(item.Exercise))
+                if (!String.IsNullOrEmpty(item.Exercise) && !String.IsNullOrEmpty(item.AvatarURL))
                 {
+                    var task = _context.Task.FirstOrDefault(t => t.TaskTitle == item.TaskId);
                     _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
                     {
                         Exercise = item.Exercise,
                         Check = item.Check,
                         Fixed = item.Fixed,
                         Comment = item.Comment,
-                        AvatarURL = "img/avatar_1.png"
+                        AvatarURL = item.AvatarURL.Substring(1),
+                        TaskId = task.Id
                     });
                     _context.SaveChanges();
                 }

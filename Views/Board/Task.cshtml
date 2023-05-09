@@ -1,0 +1,20 @@
+﻿@model Trello.Models.Task
+
+<link rel="stylesheet" href="/css/StyleTask.css" />
+<div class="task">
+    <div class="task-title">
+        @Model.TaskTitle
+        <button id="add_task_item" class="add-task-item-btn" data-toggle="modal" data-target="#MoadlTaskItem" data-taskid="@Model.TaskTitle">
+            <img src="~/img/add_FILL0.svg" alt="Add Task item" />
+        </button>
+    </div>
+    <div id="output-tasks">
+        @foreach (TaskItem i in Model.Items)
+        {
+            <partial name="TaskItem" model="@i" />
+        }
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/ModalWindows/ModalAddTaskItem.cshtml")
+<script src="~/js/HandlerModalWindows.js"></script>

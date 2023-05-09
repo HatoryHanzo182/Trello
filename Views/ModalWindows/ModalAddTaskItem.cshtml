@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="/css/StyleModalWindowTaskItem.css" />
+﻿<link rel="stylesheet" href="/css/StyleModalWindowTaskItem.css"/>
 <div class="modal" tabindex="-1" role="dialog" id="MoadlTaskItem">
     <div class="new-task">
         <h6>New Task</h6>
@@ -20,30 +20,5 @@
         </div>
     </div>
 </div>
-<script src="~/js/HandlerModalWindows.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.add-button').on('click', function () {
-            var item =
-            {
-                Exercise: $('textarea').val(),
-                Check: parseInt($('.new-task-status input:eq(0)').val()),
-                Fixed: parseInt($('.new-task-status input:eq(1)').val()),
-                Comment: parseInt($('.new-task-status input:eq(2)').val()),
-                AvatarURL: $('.task-avatar img.selected').attr('src')
-            };
-    
-            $.ajax
-            ({
-                url: '/Board/AddNewTaskItem',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(item),
-                success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
-            });
-    
-            CloseWindow();
-        });
-    });
-</script>
+<script src="~/js/HandlerModalWindows.js"></script>
