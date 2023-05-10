@@ -4,7 +4,7 @@
 <div class="task">
     <div class="task-title">
         @Model.TaskTitle
-        <button id="add_task_item" class="add-task-item-btn" data-toggle="modal" data-target="#MoadlTaskItem">
+        <button id="add_task_item" class="add-task-item-btn" data-toggle="modal" data-target="#MoadlTaskItem" data-task-id="@Model.Id">
             <img src="~/img/add_FILL0.svg" alt="Add Task item" />
         </button>
     </div>
@@ -17,4 +17,3 @@
 </div>
 
 @await Html.PartialAsync("~/Views/ModalWindows/ModalAddTaskItem.cshtml")
-<script src="~/js/HandlerModalWindows.js"></script>

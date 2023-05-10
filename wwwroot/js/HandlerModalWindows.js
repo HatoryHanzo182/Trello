@@ -69,7 +69,7 @@ $(document).ready(function () {
             Fixed: parseInt($('.new-task-status input:eq(1)').val()),
             Comment: parseInt($('.new-task-status input:eq(2)').val()),
             AvatarURL: $(this).data('avatarURL'),
-            //TaskId: $(this).data('data-tasktitle')
+            TaskId: $('#add_task_item').data('taskId')
         };
 
         $.ajax
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(item),
-                success: function () { $('#main').load('/Board/Board #main'); }
+                success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
             });
 
         CloseModalAddItem();

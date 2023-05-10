@@ -32,6 +32,7 @@ namespace Trello.Controllers
             {
                 _task = new Models.Task
                 {
+                    Id = i.Id,
                     TaskTitle = i.TaskTitle,
                     Items = task_items_DB.Where(ti => ti.TaskId == i.Id).Select(ti => new Models.TaskItem
                     {
@@ -40,7 +41,7 @@ namespace Trello.Controllers
                         Fixed = ti.Fixed,
                         Comment = ti.Comment,
                         AvatarURL = ti.AvatarURL,
-                        TaskId = ti.TaskId.ToString(),
+                        TaskId = ti.TaskId
                     }).ToList()
                 };
 
@@ -57,7 +58,7 @@ namespace Trello.Controllers
             {
                 try
                 {
-                    _context.Task.Add(new DATA.Entity.Task() { TaskTitle = task.TaskTitle, });
+                    _context.Task.Add(new DATA.Entity.Task() { TaskTitle = task.TaskTitle });
                     _context.SaveChanges();
                 }
                 catch { }
@@ -72,16 +73,21 @@ namespace Trello.Controllers
             {
                 if (!String.IsNullOrEmpty(item.Exercise) && !String.IsNullOrEmpty(item.AvatarURL))
                 {
-                    _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
+                    var task = _context.Task.FirstOrDefault(t => t.Id == item.TaskId);
+                    
+                    if (task is not null) 
                     {
-                        Exercise = item.Exercise,
-                        Check = item.Check,
-                        Fixed = item.Fixed,
-                        Comment = item.Comment,
-                        AvatarURL = item.AvatarURL.Substring(1),
-                        //TaskId
-                    });
-                    _context.SaveChanges();
+                        _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
+                        {
+                            Exercise = item.Exercise,
+                            Check = item.Check,
+                            Fixed = item.Fixed,
+                            Comment = item.Comment,
+                            AvatarURL = item.AvatarURL.Substring(1),
+                            TaskId = task.Id
+                        });
+                        _context.SaveChanges();
+                    }
                 }
             }
             return Ok();

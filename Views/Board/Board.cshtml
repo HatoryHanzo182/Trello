@@ -5,13 +5,22 @@
 
 <div class="head">
     My Boards
-    <button id="add_task" class="soap-button" data-target="#MoadlTask">Добавить новую задачу</button>
+    <button id="add_task" class="soap-button" data-target="#MoadlTask">New task</button>
 </div>
 <div id="main" class="main-table">
-    @foreach (Trello.Models.Task i in Model.Tasks)
+    @if(Model.Tasks.Count == 0)
     {
-        <partial name="Task" model="@i" />
+        <div class="text">You don't have any tasks.</div>
+    }
+    else
+    {
+        @foreach (Trello.Models.Task i in Model.Tasks)
+        {
+            <partial name="Task" model="@i" />
+        }
     }
 </div>
 
 @await Html.PartialAsync("~/Views/ModalWindows/ModalAddTask.cshtml")
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/HandlerModalWindows.js"></script>
