@@ -1,4 +1,5 @@
-﻿var open_modal_add_taskitem = document.getElementById("add_task_item");
+﻿var button_add_item = document.querySelector("button[id^='add_task_item_']");
+var open_modal_add_taskitem = document.getElementById("add_task_item_" + button_add_item.getAttribute("data-task-id"));
 var close_modal_add_taskitem = document.getElementById("cancel_window");
 var open_modal_add_task = document.getElementById("add_task");
 var close_modal_add_task = document.getElementById("cencel_window_task");
@@ -10,7 +11,7 @@ if (close_modal_add_task) { close_modal_add_task.onclick = CloseModalAddTask; }
 
 function ShowMoadalAddItem()
 {
-    var add_modal = document.getElementById("MoadlTaskItem");
+    var add_modal = document.getElementById("MoadlTaskItem_" + button_add_item.getAttribute("data-task-id"));
 
     console.log("OPEN MODAL WINDOW FOR ADD ITEM TASK");
 
@@ -18,7 +19,7 @@ function ShowMoadalAddItem()
 }
 function CloseModalAddItem()
 {
-    var close_modal_add_taskitem = document.getElementById("MoadlTaskItem");
+    var close_modal_add_taskitem = document.getElementById("MoadlTaskItem_" + button_add_item.getAttribute("data-task-id"));
     var task = close_modal_add_taskitem.getElementsByTagName("textarea")[0];
     var status = close_modal_add_taskitem.getElementsByTagName("input");
 

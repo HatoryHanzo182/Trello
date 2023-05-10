@@ -1,5 +1,7 @@
-﻿<link rel="stylesheet" href="/css/StyleModalWindowTaskItem.css"/>
-<div class="modal" tabindex="-1" role="dialog" id="MoadlTaskItem">
+﻿@model Trello.Models.Task
+
+<link rel="stylesheet" href="/css/StyleModalWindowTaskItem.css"/>
+<div class="modal" tabindex="-1" role="dialog" id="MoadlTaskItem_@Model.Id">
     <div class="new-task">
         <h6>New Task</h6>
         <textarea rows="4" cols="50" placeholder="Task text..."></textarea>
@@ -20,5 +22,3 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="~/js/HandlerModalWindows.js"></script>
