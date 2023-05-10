@@ -23,32 +23,10 @@ namespace Trello.Controllers
             _task = task;
         }
 
-        public IActionResult Board()
+        public IActionResult Board() 
         {
-            var task_items_DB = _context.TaskItems.ToList();
-            var task_DB = _context.Task.ToList();
-
-            foreach (var i in task_DB)
-            {
-                _task = new Models.Task
-                {
-                    Id = i.Id,
-                    TaskTitle = i.TaskTitle,
-                    Items = task_items_DB.Where(ti => ti.TaskId == i.Id).Select(ti => new Models.TaskItem
-                    {
-                        Exercise = ti.Exercise,
-                        Check = ti.Check,
-                        Fixed = ti.Fixed,
-                        Comment = ti.Comment,
-                        AvatarURL = ti.AvatarURL,
-                        TaskId = ti.TaskId
-                    }).ToList()
-                };
-
-                _board.Tasks.Add(_task);
-            }
-
-            return View(_board);
+            GetDataFromDB();
+            return View(_board); 
         }
 
         [HttpPost]
@@ -73,24 +51,54 @@ namespace Trello.Controllers
             {
                 if (!String.IsNullOrEmpty(item.Exercise) && !String.IsNullOrEmpty(item.AvatarURL))
                 {
-                    var task = _context.Task.FirstOrDefault(t => t.Id == item.TaskId);
-                    
-                    if (task is not null) 
+                    try
                     {
-                        _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
+                        DATA.Entity.Task new_task_item = _context.Task.FirstOrDefault(t => t.Id == item.TaskId)!;
+
+                        if (new_task_item is not null)
                         {
-                            Exercise = item.Exercise,
-                            Check = item.Check,
-                            Fixed = item.Fixed,
-                            Comment = item.Comment,
-                            AvatarURL = item.AvatarURL.Substring(1),
-                            TaskId = task.Id
-                        });
-                        _context.SaveChanges();
+                            _context.TaskItems.Add(new Trello.DATA.Entity.TaskItem()
+                            {
+                                Exercise = item.Exercise,
+                                Check = item.Check,
+                                Fixed = item.Fixed,
+                                Comment = item.Comment,
+                                AvatarURL = item.AvatarURL.Substring(1),
+                                TaskId = new_task_item.Id
+                            });
+                            _context.SaveChanges();
+                        }
                     }
+                    catch { }
                 }
             }
             return Ok();
+        }
+
+        private void GetDataFromDB()
+        {
+            List<DATA.Entity.TaskItem> task_items_DB = _context.TaskItems.ToList();
+            List<DATA.Entity.Task> task_DB = _context.Task.ToList();
+
+            foreach (var i in task_DB)
+            {
+                _task = new Models.Task
+                {
+                    Id = i.Id,
+                    TaskTitle = i.TaskTitle,
+                    Items = task_items_DB.Where(ti => ti.TaskId == i.Id).Select(ti => new Models.TaskItem
+                    {
+                        Exercise = ti.Exercise,
+                        Check = ti.Check,
+                        Fixed = ti.Fixed,
+                        Comment = ti.Comment,
+                        AvatarURL = ti.AvatarURL,
+                        TaskId = ti.TaskId
+                    }).ToList()
+                };
+
+                _board.Tasks.Add(_task);
+            }
         }
     }
 }

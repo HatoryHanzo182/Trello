@@ -1,39 +1,54 @@
-﻿var button_add_item = document.querySelector("button[id^='add_task_item_']");
-var open_modal_add_taskitem = document.getElementById("add_task_item_" + button_add_item.getAttribute("data-task-id"));
-var close_modal_add_taskitem = document.getElementById("cancel_window");
-var open_modal_add_task = document.getElementById("add_task");
+﻿var open_modal_add_task = document.getElementById("add_task");
 var close_modal_add_task = document.getElementById("cencel_window_task");
 
-if (open_modal_add_taskitem) { open_modal_add_taskitem.onclick = ShowMoadalAddItem; }
-if (close_modal_add_taskitem) { close_modal_add_taskitem.onclick = CloseModalAddItem; }
 if (open_modal_add_task) { open_modal_add_task.onclick = ShowMoadalAddTask; }
 if (close_modal_add_task) { close_modal_add_task.onclick = CloseModalAddTask; }
 
-function ShowMoadalAddItem()
+$(document).ready(function ()
 {
-    var add_modal = document.getElementById("MoadlTaskItem_" + button_add_item.getAttribute("data-task-id"));
+    $('.add-task-item-btn').on('click', function ()
+    {
+        console.log("OPEN MODAL WINDOW FOR ADD ITEM TASK");
 
-    console.log("OPEN MODAL WINDOW FOR ADD ITEM TASK");
+        $('#ModalTaskItem_' + $(this).data('task-id')).show();
+    });
 
-    if (add_modal) { add_modal.style.display = "block"; }
-}
-function CloseModalAddItem()
-{
-    var close_modal_add_taskitem = document.getElementById("MoadlTaskItem_" + button_add_item.getAttribute("data-task-id"));
-    var task = close_modal_add_taskitem.getElementsByTagName("textarea")[0];
-    var status = close_modal_add_taskitem.getElementsByTagName("input");
+    $('.cancel-button').on('click', function ()
+    {
+        console.log("CLOSE MODAL WINDOW FOR ADD ITEM TASK");
 
-    task.value = "";
-    for (var i = 0; i < status.length; i++)
-        status[i].value = "";
+        $(this).closest('.modal').hide();
+    });
 
-    $('.task-avatar img').not(this).removeClass('rounded-image');
-    $(this).addClass('rounded-image');
+    $('.add-button').on('click', function ()
+    {
+        var modal = $(this).closest('.modal');
 
-    console.log("CLOSE MODAL WINDOW FOR ADD ITEM TASK");
+        var item =
+        {
+            Exercise: modal.find('textarea').val(),
+            Check: parseInt(modal.find('.new-task-status input').eq(0).val()),
+            Fixed: parseInt(modal.find('.new-task-status input').eq(1).val()),
+            Comment: parseInt(modal.find('.new-task-status input').eq(2).val()),
+            AvatarURL: modal.find('.task-avatar img.rounded-image').attr('src'),
+            TaskId: modal.data('task-id')
+        };
 
-    if (close_modal_add_taskitem) { close_modal_add_taskitem.style.display = "none"; }
-}
+        $.ajax({
+            url: '/Board/AddNewTaskItem',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(item),
+            success: function ()
+            {
+                $('#main').load('/Board/Board #main');
+
+                modal.hide();
+            }
+        });
+    });
+});
+
 function ShowMoadalAddTask()
 {
     var add_modal = document.getElementById("MoadlTask");
@@ -42,7 +57,8 @@ function ShowMoadalAddTask()
 
     if (add_modal) { add_modal.style.display = "block"; }
 }
-function CloseModalAddTask() {
+function CloseModalAddTask()
+{
     var close_modal_add_task = document.getElementById("MoadlTask");
     var task = close_modal_add_task.getElementsByTagName("input")[0];
 
@@ -53,40 +69,16 @@ function CloseModalAddTask() {
     if (close_modal_add_task) { close_modal_add_task.style.display = "none"; }
 }
 
-$('.task-avatar img').click(function () {
+$('.task-avatar img').click(function ()
+{
     $('.task-avatar img').not(this).removeClass('rounded-image');
     $(this).addClass('rounded-image');
-
-    var avatarURL = $(this).attr('src');
-
-    $('.add-button').data('avatarURL', avatarURL);
+    $('.add-button').data('avatarURL', $(this).attr('src'));
 });
-$(document).ready(function () {
-    $('.add-button').on('click', function () {
-        var item =
-        {
-            Exercise: $('textarea').val(),
-            Check: parseInt($('.new-task-status input:eq(0)').val()),
-            Fixed: parseInt($('.new-task-status input:eq(1)').val()),
-            Comment: parseInt($('.new-task-status input:eq(2)').val()),
-            AvatarURL: $(this).data('avatarURL'),
-            TaskId: $('#add_task_item').data('taskId')
-        };
-
-        $.ajax
-            ({
-                url: '/Board/AddNewTaskItem',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(item),
-                success: function () { $('#output-tasks').load('/Board/Board #output-tasks'); }
-            });
-
-        CloseModalAddItem();
-    });
-});
-$(document).ready(function () {
-    $('body').on('click', '.add-button-task', function () {
+$(document).ready(function ()
+{
+    $('body').on('click', '.add-button-task', function ()
+    {
         var task = { TaskTitle: $('#taskNameInput').val() };
 
         $.ajax
