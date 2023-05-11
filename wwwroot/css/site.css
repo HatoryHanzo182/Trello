@@ -1,8 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -18,9 +18,9 @@ body {
 }
 
 .text {
-    color: #ffffff;
     font-size: 24px;
     text-align: center;
+    color: #ffffff;
 }
 
 .main-table {
@@ -31,31 +31,31 @@ body {
 }
 
 .soap-button {
+    padding: 15px 30px;
     position: absolute;
     top: 8px;
     right: 15px;
-    background-color: #ffffff;
-    border: none;
-    color: #333333;
-    padding: 15px 30px;
-    border-radius: 50px;
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    color: #333333;
+    background-color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .soap-button:hover {
-    background-color: #444654;
     background-size: 20px 20px;
     background-position: 0px 0px, 10px 10px;
+    background-color: #444654;
 }
 
 @media screen and (max-width: 1200px) {
     .task {
-        width: calc(50% - 2rem);
         margin-bottom: 1rem;
+        width: calc(50% - 2rem);
     }
 }
 
@@ -66,14 +66,14 @@ body {
     }
 
     .task {
-        width: 100%;
         margin-bottom: 1rem;
+        width: 100%;
     }
 
     .task-item {
-        font-size: 0.9rem;
         margin: 0.5rem;
         padding: 0.3rem;
+        font-size: 0.9rem;
     }
 
     .task-status-item {
@@ -81,9 +81,9 @@ body {
     }
 
     .task-status-item img {
+        margin-right: 2px;
         width: 15px;
         height: 15px;
-        margin-right: 2px;
     }
 
     .task-status-item-dev img {
@@ -94,8 +94,8 @@ body {
 
 @media screen and (max-width: 600px) {
     .task {
-        width: 100%;
         margin: 0.5rem 0;
+        width: 100%;
     }
 
     .task-title {
@@ -103,9 +103,9 @@ body {
     }
 
     .task-item {
-        font-size: 0.8rem;
         margin: 0.3rem;
         padding: 0.3rem;
+        font-size: 0.8rem;
     }
 
     .task-status-item {
@@ -113,9 +113,9 @@ body {
     }
 
     .task-status-item img {
+        margin-right: 1px;
         width: 13px;
         height: 13px;
-        margin-right: 1px;
     }
 
     .task-status-item-dev img {
@@ -125,12 +125,12 @@ body {
 
 @keyframes slide-up {
     from {
-        transform: translateY(100%);
         opacity: 0;
+        transform: translateY(100%);
     }
 
     to {
-        transform: translateY(0);
         opacity: 1;
+        transform: translateY(0);
     }
 }

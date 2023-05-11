@@ -1,9 +1,9 @@
 ﻿.task-item {
     margin: 1rem;
     padding: 0.5rem;
+    font-size: 1rem;
     border-radius: 10px;
     background-color: rgb(245, 245, 245);
-    font-size: 1rem;
 }
 
 .task-status {
@@ -13,15 +13,15 @@
 }
 
 .task-status-item {
-    margin: 14px;
     display: flex;
+    margin: 14px;
     align-items: center;
 }
 
 .task-status-item img {
+    margin-right: 5px;
     max-width: 100%;
     height: auto;
-    margin-right: 5px;
 }
 
 .task-status-item-dev {
