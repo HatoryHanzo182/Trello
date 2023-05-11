@@ -31,9 +31,9 @@ body {
 }
 
 .soap-button {
-    position: fixed;
-    top: 5px;
-    right: 20px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
     background-color: #ffffff;
     border: none;
     color: #333333;
@@ -119,7 +119,7 @@ body {
     }
 
     .task-status-item-dev img {
-        width: 30
+        width: 30px;
     }
 }
 
