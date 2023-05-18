@@ -16,11 +16,13 @@
     {
         @foreach (Trello.Models.Task i in Model.Tasks)
         {
-            <partial name="Task" model="@i" />
+            <partial name="Task" model="@i"/>
         }
     }
 </div>
 
 @await Html.PartialAsync("~/Views/ModalWindows/ModalAddTask.cshtml")
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/ContextMenuHandler.js"></script>
 <script src="~/js/HandlerModalWindows.js"></script>

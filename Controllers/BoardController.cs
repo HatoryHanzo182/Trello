@@ -75,6 +75,12 @@ namespace Trello.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult DeleteTask([FromBody] Models.Task task)
+        {
+            return Ok();
+        }
+
         private void GetDataFromDB()
         {
             List<DATA.Entity.TaskItem> task_items_DB = _context.TaskItems.ToList();

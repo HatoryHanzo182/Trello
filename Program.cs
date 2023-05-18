@@ -11,7 +11,6 @@ builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer("Data
 
 var app = builder.Build();
 
-
 if (!app.Environment.IsDevelopment())  // Configure the HTTP request pipeline.
 {
     app.UseExceptionHandler("/Home/Error");  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.

@@ -1,18 +1,24 @@
 ﻿$(document).ready(function ()
 {
-    $("#add_task").click(function () {
+    $("#add_task").click(function ()
+    {
         console.log("OPEN MODAL WINDOW FOR ADD TASK");
+
         $("#MoadlTask").css("display", "block");
     });
 
     $("#cencel_window_task").click(function () {
         console.log("CLOSE MODAL WINDOW FOR ADD TASK");
+
         $("#MoadlTask").css("display", "none");
         $("#MoadlTask input").val("");
     });
 
-    $(document).ready(function () {
-        $('body').on('click', '.add-button-task', function () {
+    $(document).ready(function ()
+    {
+        $('body').on('click', '.add-button-task', function ()
+        {
+            var modal = $(this).closest('.modal');
             var task = { TaskTitle: $('#taskNameInput').val() };
 
             $.ajax
@@ -21,13 +27,14 @@
                     method: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(task),
-                }).done(function () {
-                    $('#main').load('/Board/Board #main', function () {
+                }).done(function ()
+                {
+                    $('#main').load('/Board/Board #main', function ()
+                    {
                         $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
                     });
                 });
-
-            CloseModalAddTask();
+            modal.hide();
         });
     });
 
@@ -47,7 +54,8 @@
         $(this).closest('.modal').hide();
     });
 
-    $(document).on('click', '.task-avatar img', function () {
+    $(document).on('click', '.task-avatar img', function ()
+    {
         $('.task-avatar img').not(this).removeClass('rounded-image');
         $(this).addClass('rounded-image');
         $('.add-button').data('avatarURL', $(this).attr('src'));
