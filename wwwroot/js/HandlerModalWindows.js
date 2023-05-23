@@ -2,20 +2,26 @@
 {
     $("#add_task").click(function ()
     {
-        console.log("OPEN MODAL WINDOW FOR ADD TASK");
+        console.log("MODAL WINDOW ADD ITEM_TASK: Open");
 
         $("#MoadlTask").css("display", "block");
+        $("#MoadlTask input").val("");
     });
 
-    $("#cencel_window_task").click(function () {
-        console.log("CLOSE MODAL WINDOW FOR ADD TASK");
+    $("#cencel_window_task").click(function ()
+    {
+        console.log("MODAL WINDOW ADD ITEM: Close");
 
         $("#MoadlTask").css("display", "none");
         $("#MoadlTask input").val("");
+
+        bindContextMenu();
     });
 
     $(document).ready(function ()
     {
+        console.log("MODAL WINDOW ADD ITEM: Data transfer to the controller");
+
         $('body').on('click', '.add-button-task', function ()
         {
             var modal = $(this).closest('.modal');
@@ -32,6 +38,8 @@
                     $('#main').load('/Board/Board #main', function ()
                     {
                         $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
+
+                        bindContextMenu();
                     });
                 });
             modal.hide();
@@ -42,14 +50,14 @@
 
     $('.add-task-item-btn').on('click', function ()
     {
-        console.log("OPEN MODAL WINDOW FOR ADD ITEM TASK");
+        console.log("MODAL WINDOW ADD ITEM_TASK: Open");
 
         $('#ModalTaskItem_' + $(this).data('task-id')).show();
     });
 
     $(document).on('click', '.cancel-button', function ()
     {
-        console.log("CLOSE MODAL WINDOW FOR ADD ITEM TASK");
+        console.log("MODAL WINDOW ADD ITEM_TASK: Close");
 
         $(this).closest('.modal').hide();
     });
@@ -63,6 +71,7 @@
 
     $(document).on('click', '.add-button', function ()
     {
+        console.log("MODAL WINDOW ADD ITEM_TASK: Data transfer to the controller");
         var modal = $(this).closest('.modal');
 
         var item =
@@ -85,6 +94,8 @@
             $('#main').load('/Board/Board #main', function ()
             {
                 $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
+
+                bindContextMenu();
             });
 
             modal.hide();
