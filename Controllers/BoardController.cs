@@ -78,6 +78,18 @@ namespace Trello.Controllers
         [HttpPost]
         public IActionResult DeleteTask([FromBody] Models.Task task)
         {
+            DATA.Entity.Task? removed_task = _context.Task.FirstOrDefault(ti => ti.Id == task.Id);
+
+            try
+            {
+                if (removed_task != null)
+                {
+                    _context.Task.Remove(removed_task);
+                    _context.SaveChanges();
+                }
+            }
+            catch { }
+
             return Ok();
         }
 
