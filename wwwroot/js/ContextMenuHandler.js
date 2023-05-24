@@ -10,6 +10,8 @@
 
         $('#contextMenu').css({ top: event.pageY - 80, left: event.pageX - 30 }).show();
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         $(document).on('click', function (event)
         {
             console.log("CONTEXT MENU: Close");
@@ -18,10 +20,10 @@
                 $('#contextMenu').hide();
         });
 
-        $('#contextMenu .context').off('click').on('click', function ()
+        $('#contextMenu #delete').off('click').on('click', function ()
         {
             console.log("CONTEXT MENU: Deletion in progress");
-
+             
             $.ajax({
                 url: '/Board/DeleteTask',
                 type: 'POST',
@@ -35,6 +37,21 @@
 
                     bindContextMenu();
                 });
+            });
+        });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $('#contextMenu #edit').off('click').on('click', function () {
+            console.log("CONTEXT MENU: Edit in progress");
+
+            var taskTitle = $(this).closest('.task-title').text().trim();
+
+            $('#taskNameEdit').val(taskTitle);
+            $('#MoadlEditTask').show();
+
+            $('#cencel_window_edit_task').on('click', function () {
+                $('#MoadlEditTask').hide();
             });
         });
     });

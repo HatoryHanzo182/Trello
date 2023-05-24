@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="/css/StyleTask.css" />
 <div class="task">
-    <div class="task-title context-menu-trigger" data-task-id="@Model.Id">
+    <div class="task-title context-menu-trigger" data-task-id="@Model.Id" data-task-title="@Model.TaskTitle">
         @Model.TaskTitle
         <button id="add_task_item_@Model.Id" class="add-task-item-btn" data-toggle="modal" data-target="#MoadlTaskItem_@Model.Id" data-task-id="@Model.Id">
             <img src="~/img/add_FILL0.svg" alt="Add Task item" />
