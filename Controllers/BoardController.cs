@@ -93,6 +93,25 @@ namespace Trello.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult EditTask([FromBody] Models.Task task)
+        {
+            DATA.Entity.Task? edit_task = _context.Task.FirstOrDefault(ti => ti.Id == task.Id);
+
+            try
+            {
+                if (edit_task != null)
+                {
+                    edit_task.TaskTitle = task.TaskTitle;
+
+                    _context.SaveChanges();
+                }
+            }
+            catch { }
+
+            return Ok();
+        }
+
         private void GetDataFromDB()
         {
             List<DATA.Entity.TaskItem> task_items_DB = _context.TaskItems.ToList();

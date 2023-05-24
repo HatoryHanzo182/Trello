@@ -22,7 +22,7 @@
     {
         console.log("MODAL WINDOW ADD ITEM: Data transfer to the controller");
 
-        $('body').on('click', '.add-button-task', function ()
+        $('body').on('click', '#add_task_button', function ()
         {
             var modal = $(this).closest('.modal');
             var task = { TaskTitle: $('#taskNameInput').val() };

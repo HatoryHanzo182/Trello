@@ -42,7 +42,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $('#contextMenu #edit').off('click').on('click', function () {
+        $('#contextMenu #edit').off('click').on('click', function ()
+        {
             console.log("CONTEXT MENU: Edit in progress");
 
             var taskTitle = $(this).closest('.task-title').text().trim();
@@ -50,9 +51,29 @@
             $('#taskNameEdit').val(taskTitle);
             $('#MoadlEditTask').show();
 
-            $('#cencel_window_edit_task').on('click', function () {
-                $('#MoadlEditTask').hide();
-            });
+            $('#cencel_window_edit_task').on('click', function () { $('#MoadlEditTask').hide(); });
+        });
+
+        $('body').on('click', '#save_task_button', function ()
+        {
+            var modal = $(this).closest('.modal');
+            var task = { TaskTitle: $('#taskNameEdit').val(), Id: taskId };
+
+            $.ajax
+                ({
+                    url: '/Board/EditTask',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(task),
+                }).done(function ()
+                {
+                    $('#main').load('/Board/Board #main', function ()
+                    {
+                        $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
+                        bindContextMenu();
+                    });
+                });
+            modal.hide();
         });
     });
 }
