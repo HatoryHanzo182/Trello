@@ -1,7 +1,7 @@
 ﻿@model Trello.Models.TaskItem
 
 <link rel="stylesheet" href="/css/StyleTaskItem.css" />
-<div class="task-item">
+<div class="task-item context-menu-trigger-item" data-taskitem-id="@Model.Id">
     @Model.Exercise
     <div class="task-status">
         <div class="task-status-item"><img src="~/img/justify_26.png" alt="justify_26"></div>

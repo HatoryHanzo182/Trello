@@ -94,6 +94,24 @@ namespace Trello.Controllers
         }
 
         [HttpPost]
+        public IActionResult DeleteTaskItem([FromBody] Models.TaskItem task_item)
+        {
+            DATA.Entity.TaskItem? removed_task_item = _context.TaskItems.FirstOrDefault(ti => ti.Id == task_item.Id);
+            
+            try
+            {
+                if (removed_task_item != null)
+                {
+                    _context.TaskItems.Remove(removed_task_item);
+                    _context.SaveChanges();
+                }
+            }
+            catch { }
+
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult EditTask([FromBody] Models.Task task)
         {
             DATA.Entity.Task? edit_task = _context.Task.FirstOrDefault(ti => ti.Id == task.Id);
@@ -125,6 +143,7 @@ namespace Trello.Controllers
                     TaskTitle = i.TaskTitle,
                     Items = task_items_DB.Where(ti => ti.TaskId == i.Id).Select(ti => new Models.TaskItem
                     {
+                        Id = ti.Id,
                         Exercise = ti.Exercise,
                         Check = ti.Check,
                         Fixed = ti.Fixed,

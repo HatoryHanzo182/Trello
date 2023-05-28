@@ -2,6 +2,7 @@
 {
     public class TaskItem
     {
+        public Guid? Id { get; set; }
         public String? Exercise { get; set; }
         public Int32 Check { get; set; }
         public Int32 Fixed { get; set; }

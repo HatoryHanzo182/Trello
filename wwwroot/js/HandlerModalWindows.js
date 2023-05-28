@@ -2,7 +2,7 @@
 {
     $("#add_task").click(function ()
     {
-        console.log("MODAL WINDOW ADD ITEM_TASK: Open");
+        console.log("MODAL WINDOW ADD TASK: Open");
 
         $("#MoadlTask").css("display", "block");
         $("#MoadlTask input").val("");
@@ -10,7 +10,7 @@
 
     $("#cencel_window_task").click(function ()
     {
-        console.log("MODAL WINDOW ADD ITEM: Close");
+        console.log("MODAL WINDOW ADD TASK: Close");
 
         $("#MoadlTask").css("display", "none");
         $("#MoadlTask input").val("");
@@ -20,7 +20,7 @@
 
     $(document).ready(function ()
     {
-        console.log("MODAL WINDOW ADD ITEM: Data transfer to the controller");
+        console.log("MODAL WINDOW ADD TASK: Data transfer to the controller");
 
         $('body').on('click', '#add_task_button', function ()
         {
@@ -72,6 +72,7 @@
     $(document).on('click', '.add-button', function ()
     {
         console.log("MODAL WINDOW ADD ITEM_TASK: Data transfer to the controller");
+
         var modal = $(this).closest('.modal');
 
         var item =
