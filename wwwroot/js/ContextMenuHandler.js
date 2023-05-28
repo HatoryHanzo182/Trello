@@ -4,7 +4,7 @@
     {
         event.preventDefault();
 
-        console.log("CONTEXT MENU: Open");
+        console.log("CONTEXT MENU FOR TASK: Open");
 
         var taskId = $(this).data('task-id');
 
@@ -52,15 +52,13 @@
             $('#MoadlEditTask').show();
 
             $('#cencel_window_edit_task').on('click', function () { $('#MoadlEditTask').hide(); });
-        });
 
-        $('body').on('click', '#save_task_button', function ()
-        {
-            var modal = $(this).closest('.modal');
-            var task = { TaskTitle: $('#taskNameEdit').val(), Id: taskId };
+            $('body').off('click', '#save_task_button').on('click', '#save_task_button', function ()
+            {
+                var modal = $(this).closest('.modal');
+                var task = { TaskTitle: $('#taskNameEdit').val(), Id: taskId };
 
-            $.ajax
-                ({
+                $.ajax({
                     url: '/Board/EditTask',
                     method: 'POST',
                     contentType: 'application/json',
@@ -70,11 +68,15 @@
                     $('#main').load('/Board/Board #main', function ()
                     {
                         $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
+
                         bindContextMenu();
                     });
                 });
-            modal.hide();
+
+                modal.hide();
+            });
         });
+
     });
 }
 
