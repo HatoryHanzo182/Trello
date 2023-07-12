@@ -130,6 +130,43 @@ namespace Trello.Controllers
             return Ok();
         }
 
+
+
+
+
+
+        public IActionResult EditTaskItem([FromBody] Models.TaskItem item)
+        {
+            if (item is not null)
+            {
+                if (!String.IsNullOrEmpty(item.Exercise) && !String.IsNullOrEmpty(item.AvatarURL))
+                {
+                    try
+                    {
+                        DATA.Entity.TaskItem new_task_item = _context.TaskItems.FirstOrDefault(t => t.Id == item.TaskId)!;
+
+                        if (new_task_item is not null)
+                        {
+                            new_task_item.Exercise = item.Exercise;
+                            new_task_item.Check = item.Check;
+                            new_task_item.Fixed = item.Fixed;
+                            new_task_item.Comment = item.Comment;
+                            new_task_item.AvatarURL = item.AvatarURL.Substring(1);
+                            new_task_item.TaskId = new_task_item.Id;
+                            _context.SaveChanges();
+                        }
+                    }
+                    catch { }
+                }
+            }
+            return Ok();
+        }
+
+
+
+
+
+
         private void GetDataFromDB()
         {
             List<DATA.Entity.TaskItem> task_items_DB = _context.TaskItems.ToList();
