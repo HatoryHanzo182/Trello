@@ -130,11 +130,6 @@ namespace Trello.Controllers
             return Ok();
         }
 
-
-
-
-
-
         public IActionResult EditTaskItem([FromBody] Models.TaskItem item)
         {
             if (item is not null)
@@ -161,11 +156,6 @@ namespace Trello.Controllers
             }
             return Ok();
         }
-
-
-
-
-
 
         private void GetDataFromDB()
         {

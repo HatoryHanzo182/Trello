@@ -105,41 +105,28 @@
             });
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         $('#contextMenu #edit').off('click').on('click', function () {
             console.log("CONTEXT MENU FOR TASK ITEM: Edit in progress");
 
-            $('#ModalEditTaskItem').attr('data-taskitem-id', $(this).closest('.context-menu-trigger-item').data('taskitem-id'));
+            var taskItemId = $(this).closest('.context-menu-trigger-item').data('taskitem-id');
+            $('#ModalEditTaskItem_' + taskItemId).show();
             $('#contextMenu').hide();
-            $('#ModalEditTaskItem').show();
 
-            $(document).on('click', '#add_edit_data', function () {
+            $(document).on('click', '#add_edit_data', function ()
+            {
                 console.log("MODAL WINDOW Edit ITEM_TASK: Data transfer to the controller");
 
-                var modal = $(this).closest('.modal-edit');
+                var modal = $(this).closest('.modal');
 
-                var item =
-                {
+                var item = {
                     Exercise: modal.find('textarea').val(),
                     Check: parseInt(modal.find('.new-task-status input').eq(0).val()),
                     Fixed: parseInt(modal.find('.new-task-status input').eq(1).val()),
                     Comment: parseInt(modal.find('.new-task-status input').eq(2).val()),
                     AvatarURL: modal.find('.task-avatar img.rounded-image').attr('src'),
-                    TaskId: modal.data('task-id')
+                    TaskId: modal.attr('data-taskitem-id')
                 };
 
                 $.ajax({

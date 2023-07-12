@@ -1,7 +1,7 @@
 ﻿@model Trello.Models.Task
 
 <link rel="stylesheet" href="/css/StyleModalWindowTaskItem.css" />
-<div class="modal-edit" tabindex="-1" role="dialog" id="ModalEditTaskItem" data-taskitem-id="@Model.Id">
+<div class="modal" tabindex="-1" role="dialog" id="ModalEditTaskItem_@Model.Id" data-taskitem-id="@Model.Id">
     <div class="new-task">
         <h6>Edit Task</h6>
         <textarea rows="4" cols="50" placeholder="Task text..."></textarea>
