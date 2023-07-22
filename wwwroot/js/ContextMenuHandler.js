@@ -106,46 +106,7 @@
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        $('#contextMenu #edit').off('click').on('click', function () {
-            console.log("CONTEXT MENU FOR TASK ITEM: Edit in progress");
-
-            var taskItemId = $(this).closest('.context-menu-trigger-item').data('taskitem-id');
-            $('#ModalEditTaskItem_' + taskItemId).show();
-            $('#contextMenu').hide();
-
-            $(document).on('click', '#add_edit_data', function ()
-            {
-                console.log("MODAL WINDOW Edit ITEM_TASK: Data transfer to the controller");
-
-                var modal = $(this).closest('.modal');
-
-                var item = {
-                    Exercise: modal.find('textarea').val(),
-                    Check: parseInt(modal.find('.new-task-status input').eq(0).val()),
-                    Fixed: parseInt(modal.find('.new-task-status input').eq(1).val()),
-                    Comment: parseInt(modal.find('.new-task-status input').eq(2).val()),
-                    AvatarURL: modal.find('.task-avatar img.rounded-image').attr('src'),
-                    TaskId: modal.attr('data-taskitem-id')
-                };
-
-                $.ajax({
-                    url: '/Board/EditTaskItem',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(item)
-                }).done(function () {
-                    $('#main').load('/Board/Board #main', function () {
-                        $('.add-task-item-btn').on('click', function () { $('#ModalTaskItem_' + $(this).data('task-id')).show(); });
-
-                        bindContextMenu();
-                    });
-
-                    modal.hide();
-                });
-            });
-        });
     });
-};
+};////
 
 bindContextMenu();

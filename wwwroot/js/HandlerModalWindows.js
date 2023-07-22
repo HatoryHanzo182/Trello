@@ -75,6 +75,8 @@
 
         var modal = $(this).closest('.modal');
 
+        console.log(modal.data('task-id'));
+
         var item =
         {
             Exercise: modal.find('textarea').val(),

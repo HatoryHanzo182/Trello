@@ -143,7 +143,7 @@ namespace Trello.Controllers
                         if (new_task_item is not null)
                         {
                             new_task_item.Exercise = item.Exercise;
-                            new_task_item.Check = item.Check;
+                            new_task_item.Check = item.Check; 
                             new_task_item.Fixed = item.Fixed;
                             new_task_item.Comment = item.Comment;
                             new_task_item.AvatarURL = item.AvatarURL.Substring(1);
