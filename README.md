@@ -1,1 +1,1 @@
-![image](https://github.com/HatoryHanzo182/Trello/assets/55142468/c6af7d5b-d1e1-4aed-ba6e-dd2e16840131)
+![image](https://github.com/HatoryHanzo182/Trello/assets/55142468/1555a788-c097-4ea6-a680-ca88bd852d9b)
