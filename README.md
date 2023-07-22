@@ -1,6 +1,8 @@
 # Trello Clone - Kanban clone with basic functionality
 
-![image](https://github.com/HatoryHanzo182/Trello/assets/55142468/1555a788-c097-4ea6-a680-ca88bd852d9b)
+
+![Снимок экрана 2023-07-22 203558](https://github.com/HatoryHanzo182/Trello/assets/55142468/07e80bfc-daf6-48d8-ab8d-b8c7e3d11c81)
+
 
 ## About the project
 
